@@ -76,15 +76,15 @@ const Index = () => {
         <div className="flex justify-center gap-6 text-sm">
           <div className="flex items-center gap-2">
             <div className="w-3 h-3 bg-chart-usd rounded-full"></div>
-            <span>USD/BRL - Dólar Americano</span>
+            <span>USD/BRL - Dólar Americano (eixo esquerdo)</span>
           </div>
           <div className="flex items-center gap-2">
             <div className="w-3 h-3 bg-chart-eur rounded-full"></div>
-            <span>EUR/BRL - Euro</span>
+            <span>EUR/BRL - Euro (eixo esquerdo)</span>
           </div>
           <div className="flex items-center gap-2">
             <div className="w-3 h-3 bg-chart-cny rounded-full"></div>
-            <span>CNY/BRL - Yuan Chinês</span>
+            <span>CNY/BRL - Yuan Chinês (eixo direito)</span>
           </div>
         </div>
       </div>

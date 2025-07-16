@@ -28,7 +28,7 @@ export function CurrencyChart({ data }: CurrencyChartProps) {
           data={data}
           margin={{
             top: 5,
-            right: 30,
+            right: 50,
             left: 20,
             bottom: 5,
           }}
@@ -40,10 +40,21 @@ export function CurrencyChart({ data }: CurrencyChartProps) {
             stroke="hsl(var(--muted-foreground))"
             fontSize={12}
           />
+          {/* Eixo Y esquerdo para USD e EUR */}
           <YAxis 
+            yAxisId="left"
             stroke="hsl(var(--muted-foreground))"
             fontSize={12}
             tickFormatter={(value) => `R$ ${value.toFixed(2)}`}
+            orientation="left"
+          />
+          {/* Eixo Y direito para CNY */}
+          <YAxis 
+            yAxisId="right"
+            stroke="hsl(var(--chart-cny))"
+            fontSize={12}
+            tickFormatter={(value) => `R$ ${value.toFixed(2)}`}
+            orientation="right"
           />
           <Tooltip 
             formatter={formatTooltipValue}
@@ -57,6 +68,7 @@ export function CurrencyChart({ data }: CurrencyChartProps) {
           />
           <Legend />
           <Line 
+            yAxisId="left"
             type="monotone" 
             dataKey="USDBRL" 
             stroke="hsl(var(--chart-usd))" 
@@ -65,6 +77,7 @@ export function CurrencyChart({ data }: CurrencyChartProps) {
             name="USD/BRL"
           />
           <Line 
+            yAxisId="left"
             type="monotone" 
             dataKey="EURBRL" 
             stroke="hsl(var(--chart-eur))" 
@@ -73,12 +86,13 @@ export function CurrencyChart({ data }: CurrencyChartProps) {
             name="EUR/BRL"
           />
           <Line 
+            yAxisId="right"
             type="monotone" 
             dataKey="CNYBRL" 
             stroke="hsl(var(--chart-cny))" 
             strokeWidth={2}
             dot={false}
-            name="CNY/BRL"
+            name="CNY/BRL (eixo direito)"
           />
         </LineChart>
       </ResponsiveContainer>

@@ -62,6 +62,12 @@ export default {
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
 				},
+				pantone: {
+					'299-c': 'hsl(var(--pantone-299-c))',
+					'299-u': 'hsl(var(--pantone-299-u))',
+					'425-c': 'hsl(var(--pantone-425-c))',
+					'426-u': 'hsl(var(--pantone-426-u))'
+				},
 				chart: {
 					usd: 'hsl(var(--chart-usd))',
 					eur: 'hsl(var(--chart-eur))',
