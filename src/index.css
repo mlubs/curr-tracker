@@ -42,10 +42,10 @@ All colors MUST be HSL.
     --pantone-425-c: 220 9% 34%;    /* #54585A - Pantone 425 C */
     --pantone-426-u: 220 4% 41%;    /* #686869 - Pantone 426 U */
     
-    /* Chart colors using pantone palette */
-    --chart-usd: 195 100% 44%;      /* Pantone 299 C */
-    --chart-eur: 196 100% 47%;      /* Pantone 299 U */
-    --chart-cny: 220 9% 34%;        /* Pantone 425 C */
+    /* Chart colors - cores originais */
+    --chart-usd: 34 100% 50%;        /* Amarelo para USD */
+    --chart-eur: 221 83% 53%;        /* Azul para EUR */
+    --chart-cny: 0 72% 51%;          /* Vermelho para CNY */
     
     /* Gradients */
     --gradient-primary: linear-gradient(135deg, hsl(195 100% 44%), hsl(196 100% 47%));
