@@ -10,9 +10,9 @@ import { useCurrencyData } from "@/hooks/useCurrencyData";
 import { LineChart, Calendar, TrendingUp } from "lucide-react";
 
 const Index = () => {
-  const [startDate, setStartDate] = useState<Date | undefined>(addDays(new Date(), -30));
+  const [startDate, setStartDate] = useState<Date | undefined>(new Date('2025-01-01'));
   const [endDate, setEndDate] = useState<Date | undefined>(new Date());
-  const [period, setPeriod] = useState<Period>('daily');
+  const [period, setPeriod] = useState<Period>('monthly');
 
   const { data, loading } = useCurrencyData(startDate, endDate, period);
 
