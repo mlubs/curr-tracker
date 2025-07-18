@@ -42,16 +42,16 @@ export function CurrencyChart({ data }: CurrencyChartProps) {
         {payload.map((entry: any, index: number) => (
           <div
             key={`item-${index}`}
-            className={`flex items-center gap-2 cursor-pointer transition-opacity hover:opacity-80 ${
-              !visibleLines[entry.dataKey as keyof typeof visibleLines] ? 'opacity-50' : ''
-            }`}
+            className={`flex items-center gap-2 cursor-pointer transition-opacity hover:opacity-80`}
             onClick={() => handleLegendClick(entry.dataKey)}
           >
             <div 
               className="w-3 h-3 rounded-full" 
               style={{ backgroundColor: entry.color }}
             />
-            <span className="text-sm select-none">
+            <span className={`text-sm select-none ${
+              !visibleLines[entry.dataKey as keyof typeof visibleLines] ? 'opacity-50 line-through' : ''
+            }`}>
               {entry.value}
               {!visibleLines[entry.dataKey as keyof typeof visibleLines] && ' (oculto)'}
             </span>

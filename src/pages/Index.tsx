@@ -2,6 +2,7 @@ import { useState } from "react";
 import { addDays } from "date-fns";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { CurrencyChart } from "@/components/CurrencyChart";
+import { CurrencyParityChart } from "@/components/CurrencyParityChart";
 import { DateRangePicker } from "@/components/DateRangePicker";
 import { PeriodSelector, Period } from "@/components/PeriodSelector";
 import { CurrencyStats } from "@/components/CurrencyStats";
@@ -24,7 +25,7 @@ const Index = () => {
             <LineChart className="h-6 w-6 text-primary-foreground" />
           </div>
           <div>
-            <h1 className="text-3xl font-bold">Painel de Cotações</h1>
+            <h1 className="text-3xl font-bold text-foreground">Painel de Cotações</h1>
             <p className="text-muted-foreground">Acompanhe as cotações USD/BRL, EUR/BRL e CNY/BRL</p>
           </div>
         </div>
@@ -59,7 +60,7 @@ const Index = () => {
         {/* Estatísticas */}
         <CurrencyStats data={data} />
 
-        {/* Gráfico */}
+        {/* Gráfico Principal */}
         <Card className="bg-gradient-card shadow-elegant">
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
@@ -71,6 +72,9 @@ const Index = () => {
             <CurrencyChart data={data} />
           </CardContent>
         </Card>
+
+        {/* Gráfico de Paridade */}
+        <CurrencyParityChart data={data} />
       </div>
     </div>
   );
