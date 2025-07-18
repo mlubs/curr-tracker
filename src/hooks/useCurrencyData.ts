@@ -42,6 +42,26 @@ async function fetchBCBRate(currency: string, date: string): Promise<number | nu
   }
 }
 
+// Função alternativa para buscar CNY via ExchangeRate API quando BCB falha
+async function fetchAlternativeCNYRate(date: string): Promise<number | null> {
+  try {
+    const formattedDate = format(parseISO(date), 'yyyy-MM-dd');
+    const response = await fetch(`https://api.exchangerate-api.com/v4/historical/${formattedDate}`);
+    const data = await response.json();
+    
+    if (data.rates && data.rates.CNY && data.rates.BRL) {
+      // Calcula CNY/BRL usando USD como base
+      const cnyToUsd = 1 / data.rates.CNY;
+      const usdToBrl = data.rates.BRL;
+      return cnyToUsd * usdToBrl;
+    }
+    return null;
+  } catch (error) {
+    console.error('Erro ao buscar cotação CNY alternativa:', error);
+    return null;
+  }
+}
+
 // Função para buscar dados de múltiplas datas
 async function fetchCurrencyData(startDate: Date, endDate: Date, period: Period): Promise<CurrencyData[]> {
   const data: CurrencyData[] = [];
@@ -74,7 +94,13 @@ async function fetchCurrencyData(startDate: Date, endDate: Date, period: Period)
     
     // Busca cotação para cada moeda
     for (const currency of currencies) {
-      const rate = await fetchBCBRate(currency, dateStr);
+      let rate = await fetchBCBRate(currency, dateStr);
+      
+      // Se for CNY e BCB falhou, tenta fonte alternativa
+      if (rate === null && currency === 'CNY') {
+        rate = await fetchAlternativeCNYRate(dateStr);
+      }
+      
       if (rate !== null) {
         dayData[`${currency}BRL`] = rate;
       } else {

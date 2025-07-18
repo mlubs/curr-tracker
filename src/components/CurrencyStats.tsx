@@ -79,6 +79,9 @@ export function CurrencyStats({ data }: CurrencyStatsProps) {
                 </span>
                 <span className="text-muted-foreground ml-1">no período selecionado</span>
               </div>
+              <div className="text-xs text-muted-foreground mt-1">
+                Fonte: {stat.title === 'CNY/BRL' ? 'BCB/ExchangeRate-API' : 'Banco Central do Brasil'}
+              </div>
             </CardContent>
           </Card>
         );
