@@ -16,19 +16,19 @@ export function CurrencyStats({ data }: CurrencyStatsProps) {
   if (data.length === 0) return null;
 
   const latest = data[data.length - 1];
-  const previous = data.length > 1 ? data[data.length - 2] : latest;
+  const initial = data[0]; // Primeira data do período selecionado
 
-  const calculateChange = (current: number, prev: number) => {
-    const change = ((current - prev) / prev) * 100;
+  const calculateChange = (current: number, initial: number) => {
+    const change = ((current - initial) / initial) * 100;
     return {
       value: change,
       isPositive: change >= 0
     };
   };
 
-  const usdChange = calculateChange(latest.USDBRL, previous.USDBRL);
-  const eurChange = calculateChange(latest.EURBRL, previous.EURBRL);
-  const cnyChange = calculateChange(latest.CNYBRL, previous.CNYBRL);
+  const usdChange = calculateChange(latest.USDBRL, initial.USDBRL);
+  const eurChange = calculateChange(latest.EURBRL, initial.EURBRL);
+  const cnyChange = calculateChange(latest.CNYBRL, initial.CNYBRL);
 
   const stats = [
     {
@@ -77,7 +77,7 @@ export function CurrencyStats({ data }: CurrencyStatsProps) {
                 <span className={stat.change.isPositive ? 'text-primary' : 'text-destructive'}>
                   {stat.change.value >= 0 ? '+' : ''}{stat.change.value.toFixed(2)}%
                 </span>
-                <span className="text-muted-foreground ml-1">desde último período</span>
+                <span className="text-muted-foreground ml-1">no período selecionado</span>
               </div>
             </CardContent>
           </Card>

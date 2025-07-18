@@ -14,7 +14,7 @@ const Index = () => {
   const [endDate, setEndDate] = useState<Date | undefined>(new Date());
   const [period, setPeriod] = useState<Period>('daily');
 
-  const data = useCurrencyData(startDate, endDate, period);
+  const { data, loading } = useCurrencyData(startDate, endDate, period);
 
   return (
     <div className="min-h-screen bg-background p-6">
@@ -58,7 +58,13 @@ const Index = () => {
         </Card>
 
         {/* Estatísticas */}
-        <CurrencyStats data={data} />
+        {loading ? (
+          <div className="text-center py-8">
+            <p className="text-muted-foreground">Carregando cotações oficiais do BCB...</p>
+          </div>
+        ) : (
+          <CurrencyStats data={data} />
+        )}
 
         {/* Gráfico Principal */}
         <Card className="bg-gradient-card shadow-elegant">
@@ -69,7 +75,13 @@ const Index = () => {
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <CurrencyChart data={data} />
+            {loading ? (
+              <div className="h-96 flex items-center justify-center">
+                <p className="text-muted-foreground">Carregando dados...</p>
+              </div>
+            ) : (
+              <CurrencyChart data={data} />
+            )}
           </CardContent>
         </Card>
 
